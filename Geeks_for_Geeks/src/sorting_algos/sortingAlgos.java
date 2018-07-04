@@ -5,6 +5,7 @@ import java.util.Collections;
 
 public class sortingAlgos {
 
+	/*	Prints the array given as argument*/
 	public void printArray(int[] arr){
 		
 		for(int i = 0;i < arr.length;i++)
@@ -14,6 +15,9 @@ public class sortingAlgos {
 		
 	}
 	
+	/*	Generates a random arrar of size n and populates it 
+	  	with integers between 0 and (n-1) in random order
+	 */
 	public int[] generateRandomArray(int n){
 		
 		ArrayList<Integer> al = new ArrayList<Integer>();
@@ -29,6 +33,7 @@ public class sortingAlgos {
 		return arr;
 	}
 	
+	/*Implementation of selection sort algorithm*/
 	public int[] selectionSort(int[] arr){
 		
 		for(int i = 0;i < arr.length;i++){
@@ -49,7 +54,8 @@ public class sortingAlgos {
 
 		return arr;
 	}
-
+	
+	/*Implementation of bubble sort algorithm*/
 	public int[] bubbleSort(int[] arr){
 		
 		for(int i = 0;i < arr.length - 2;i++){
@@ -64,6 +70,7 @@ public class sortingAlgos {
 		return arr;
 	}
 
+	/* Implementation of insertion sort algorithm */
 	public int[] insertionSort(int[] arr){
 		
 		for(int i = 1;i < arr.length;i++){
@@ -78,6 +85,8 @@ public class sortingAlgos {
 		return arr;
 	}
 
+	/* Used in the merge sort algorithm.
+	 * Merges two sorted arrays into a single sorted array*/
 	public int[] merge(int[] arr, int l,int m,int r){
 		
 		int size1 = m - l + 1;
@@ -122,6 +131,7 @@ public class sortingAlgos {
 		return arr;
 	}
 
+	/* Implementation of merge sort algorithm */
 	public int[] mergeSort(int[] arr,int l,int r){
 		
 		if(l < r){
@@ -136,6 +146,7 @@ public class sortingAlgos {
 			return null;
 	}
 
+	/* Partitions the array taking last element as pivot */
 	public int partition(int[] arr,int start,int end){
 		
 		int pivot = arr[end];
@@ -155,7 +166,7 @@ public class sortingAlgos {
 		
 		return pIndex;
 	}
-	
+	/* Quick sort algorithm implementation */
 	public int[] quickSort(int[] arr,int start,int end){
 		if(start < end){
 			int pIndex = partition(arr,start,end);

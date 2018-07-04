@@ -21,17 +21,7 @@ import string_algos.stringAlgos;
 public class MainClass {
 public static void main(String args[]){
 
-	stringAlgos algos = new stringAlgos();
-	String str = "AABAACAADAABAAABAA";
-    String pattern = "AABA";
-    //algos.naivePatternSearch(pattern, str);
-	//algos.kmpSearch(pattern, str);
-    //algos.rubinKarpSearch(pattern, str);
-    algos.zSearch(pattern, str);
-	
-//	int[] lps = algos.getLps("ABABCABAB");
-//	for(int i = 0;i < lps.length;i++)
-//		System.out.print(lps[i] + " ");
+	string_algos();
 }
 
 public static void bst_test(){
@@ -332,5 +322,20 @@ public static void hash_test(){
 	
 //	int[] arr8 = {1, 9, 3, 10, 4, 20,11};
 //	System.out.println(hf.longestConsecutive(arr8));
+}
+
+public static void string_algos(){
+	
+	stringAlgos algos = new stringAlgos();
+	String str = "AABAACAADAABAAABAA";
+    String pattern = "AABA";
+    //algos.naivePatternSearch(pattern, str);
+	algos.kmpSearch(pattern, str);
+    //algos.rubinKarpSearch(pattern, str);
+    //algos.zSearch(pattern, str);
+	
+//	int[] lps = algos.getLps("ABABCABAB");
+//	for(int i = 0;i < lps.length;i++)
+//		System.out.print(lps[i] + " ");
 }
 }

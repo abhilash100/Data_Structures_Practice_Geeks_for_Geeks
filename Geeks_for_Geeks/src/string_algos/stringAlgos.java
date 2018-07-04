@@ -4,12 +4,24 @@ import java.util.HashSet;
 
 public class stringAlgos {
 
-	public void naivePatternSearch(String pattern,String str){
-		
+	/*	Compares if string length is greater than the pattern length */
+	private boolean patternStringLengthCompare(String pattern,String str){
 		if(pattern.length() > str.length()){
 			System.out.println("Pattern size is greater than the string length");
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	/*	Brute force search algorithm which looks for the pattern 
+	 *  in the given string */
+	public void naivePatternSearch(String pattern,String str){
+		
+		if(patternStringLengthCompare(pattern,str)){
 			return;
 		}
+		
 		int n = str.length();
 		int p = pattern.length();
 		HashSet<Integer> index = new HashSet<Integer>();
@@ -17,7 +29,6 @@ public class stringAlgos {
 		for(int i = 0;i < n - p;i++){
 			boolean flag = true;
 			for(int j = 0;j < p;j++){
-				//System.out.println((str.charAt(j) + " " + pattern.charAt(j - i)) + " " + i);
 				if(str.charAt(j + i) != pattern.charAt(j)){
 					flag = false;
 					break;
@@ -39,7 +50,9 @@ public class stringAlgos {
 		return;
 	}
 
-	public int[] getLps(String pattern){
+	/*	Used in the KMP algorithm
+	 * 	Used to find the "longest possible prefix that is also a suffix(LPS)" */
+	private int[] getLps(String pattern){
 		
 		int[] lps = new int[pattern.length()];
 		
@@ -55,23 +68,25 @@ public class stringAlgos {
 			else {
 				if(j != 0){
 					j = lps[j-1];
-			}
+				}
 				else{
 					lps[i] = 0;
 					i++;
+				}
 			}
-		}
 		}
 		
 		return lps;
 	}
-
+	
+	/*	Implementation of the KMP(Knuth-Morris-Pratt) algorithm for searching 
+	 *	for a pattern in a string */
 	public void kmpSearch(String pattern,String str){
 		
-		if(pattern.length() > str.length()){
-			System.out.println("Pattern size is greater than the string length");
+		if(patternStringLengthCompare(pattern,str)){
 			return;
 		}
+		
 		HashSet<Integer> index = new HashSet<Integer>();
 		
 		int[] lps = getLps(pattern);
@@ -86,7 +101,7 @@ public class stringAlgos {
 			if(j == pattern.length()){
 				index.add((i-j));
 				j = lps[j-1];
-			}
+				}
 			}
 			else if(i < (str.length())){
 				if(j != 0)
@@ -106,10 +121,11 @@ public class stringAlgos {
 		return;
 	}
 
+	/*	Implementation of the Rubin Karp algorithm for searching 
+	 *	for a pattern in a string */
 	public void rubinKarpSearch(String pattern,String str){
 		
-		if(pattern.length() > str.length()){
-			System.out.println("Pattern size is greater than the string length");
+		if(patternStringLengthCompare(pattern,str)){
 			return;
 		}
 		
@@ -134,11 +150,11 @@ public class stringAlgos {
 		return;	
 		
 	}
-
+	/*	Implementation of the Z algorithm for searching 
+	 *	for a pattern in a string */
 	public void zSearch(String pattern,String str){
 		
-		if(pattern.length() > str.length()){
-			System.out.println("Pattern size is greater than the string length");
+		if(patternStringLengthCompare(pattern,str)){
 			return;
 		}
 		
@@ -160,7 +176,8 @@ public class stringAlgos {
 		while(i < z_string.length()){
 			j = 0;
 			int k = i;
-			while(k < z_string.length() && z_string.charAt(k) == z_string.charAt(j)){
+			while(k < z_string.length() && 
+					(z_string.charAt(k) == z_string.charAt(j))){
 				k++;
 				j++;
 			}
@@ -182,4 +199,5 @@ public class stringAlgos {
 			System.out.println("Pattern not found");
 		return;	
 	}
+
 }
