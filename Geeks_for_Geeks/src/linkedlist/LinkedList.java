@@ -8,6 +8,7 @@ int count = 0; 			//	Delete later
 public int getSize() {
 	return size;
 }
+/*	Linked list node definition	*/
 public class Node{
 	public int data;
 	Node next;
@@ -17,13 +18,14 @@ public class Node{
 		this.next = null;
 	}
 }
-
+/*	Adding a node at the start of the list	*/
 public void pushAtStart(int val){
 	Node n = new Node(val);
 	n.next = head;
 	head = n;
 	size++;
 }
+/*	Adding a node at the end of the list	*/
 public void pushAtEnd(int val){
 	Node n = new Node(val);
 	Node x = head;
@@ -33,6 +35,7 @@ public void pushAtEnd(int val){
 	x.next = n;
 	size++;
 }
+/*	Pushing a node at position N	*/
 public void pushAtN(int val,int idx)throws Exception{
 	Node n = new Node(val);
 	if(idx == 0)
@@ -50,6 +53,7 @@ public void pushAtN(int val,int idx)throws Exception{
 		itr.next = n;
 	}
 }
+/*	Deleting the first node*/
 public void deleteFirst(){
 	if(head == null)
 		throw new LinkedListException("Cannot delete first element as Linked List is empty");
@@ -57,6 +61,7 @@ public void deleteFirst(){
 		head = head.next;
 	size --;
 }
+/*	Deleting the last node	*/
 public void deleteLast(){
 	Node x = head;
 	while(x.next.next != null){
@@ -65,6 +70,7 @@ public void deleteLast(){
 	x.next = null;
 	size --;
 }
+/*	Deleting the Nth node*/
 public void deleteAtN(int idx){
 	if(idx == 0)
 		deleteFirst();
@@ -80,7 +86,7 @@ public void deleteAtN(int idx){
 		itr.next = itr.next.next;
 	}
 }
-@SuppressWarnings("unused")
+/*	Swapping the elements at idx2 and idx2	*/
 public void swap(int idx1,int idx2) throws Exception{
 	
 	Node itr1 = head;
@@ -158,6 +164,7 @@ public void swap(int idx1,int idx2) throws Exception{
 	}
 	
 }
+/*	Searcing for a particular number in the linked list	*/
 public int search(int num){
 
 	int idx = 0;
@@ -177,6 +184,7 @@ public int search(int num){
 		return -1;
 
 }
+/*	Merging the linked list with the one passed as an argument	*/
 public void mergeList(LinkedList l){
 	Node x = head;
 	while(x.next != null){
@@ -184,7 +192,7 @@ public void mergeList(LinkedList l){
 	}
 	x.next = l.head;
 }
-
+/*	Getting the middle element of a linked list	*/
 public static Node getMiddle(Node head1){
 	
 	if(head1 == null)
@@ -203,7 +211,7 @@ public static Node getMiddle(Node head1){
 	}
 	return slow_ptr;
 } 
-
+/*	Breaking the linked list based on the values of l and r	*/
 public LinkedList breakList(LinkedList list, int l,int r){
 	Node itr = list.head;
 	
@@ -258,6 +266,7 @@ public static Node mergeSort(Node list_head) {
 	Node sorted_list = sortMerge(left,right);
 	return sorted_list;
 }
+/*	Prints out the entire Linked List*/
 public void printList(){
 	Node itr = head;
 	while(itr.next != null){
@@ -265,7 +274,8 @@ public void printList(){
 		itr = itr.next;
 	}
 	System.out.println(itr.data);
-}	
+}
+/*	Prints out the element of index N of the linked list	*/
 public static void printList(Node n){
 	Node itr = n;
 	while(itr.next != null){

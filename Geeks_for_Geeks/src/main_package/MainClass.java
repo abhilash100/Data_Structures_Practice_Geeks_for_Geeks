@@ -22,6 +22,10 @@ public class MainClass {
 public static void main(String args[]){
 
 	string_algos();
+	stack_test();
+	sorting_algos();
+	hash_test();
+	linkedList_test();
 }
 
 public static void bst_test(){

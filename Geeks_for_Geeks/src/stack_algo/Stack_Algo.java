@@ -5,8 +5,10 @@ import java.util.Stack;
 
 public class Stack_Algo {
 
+	/*	Used to get precedence levelof operator. 
+	 *	Used in infix to postfix conversion and evaluating postfix expressions*/
 	private class Precedence{
-		
+		/*	Returns precedence of the operator	*/
 		public int getPrecedence(char c){
 			if(c == '+' || c == '-')
 				return 0;
@@ -17,14 +19,14 @@ public class Stack_Algo {
 			else
 				return -1;
 		}
-		
+		/*	Returns whether the character is an operator or not	*/
 		public boolean isOperator(char c){
 			if(c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')')
 				return true;
 			else
 				return false;
 		}
-		
+		/*	Compares the precedence of the two operaros passed	*/
 		public int comparePrecedence(char a,char b){
 			if(getPrecedence(a) == getPrecedence(b))
 				return 0;
@@ -34,7 +36,8 @@ public class Stack_Algo {
 				return -1;
 		}
 	}
-	
+
+	/*	Converts infix expression to postfix	*/
 	public String infixToPostfix(String expr){
 		
 		StringBuffer post_expr = new StringBuffer();
@@ -54,7 +57,6 @@ public class Stack_Algo {
 				else if(c == ')'){
 					while(!op_stack.isEmpty() && op_stack.peek() != '(')
 						post_expr.append(op_stack.pop());
-					//System.out.println(op_stack.isEmpty());
 					}	
 				else{
 					if(op_stack.isEmpty())
@@ -62,7 +64,8 @@ public class Stack_Algo {
 					else{
 						if(op_stack.peek() == '(')
 							op_stack.pop();
-						while(!op_stack.isEmpty() && obj.getPrecedence(c) <= obj.getPrecedence(op_stack.peek())){
+						while(!op_stack.isEmpty() 
+								&& obj.getPrecedence(c) <= obj.getPrecedence(op_stack.peek())){
 							post_expr.append(op_stack.pop());
 						}
 						op_stack.push(c);
@@ -77,7 +80,7 @@ public class Stack_Algo {
 		}
 		return post_expr.toString();
    }
-	
+	/*	Checks if the expression in a balanced expression or not	*/
 	public boolean balancedExpr(String expr){
 		boolean flag;
 		Stack<Character> stack = new Stack<Character>();
@@ -110,6 +113,7 @@ public class Stack_Algo {
 		return true;
 	}
 	
+	/*	Sloution to the stock span problem	*/
 	public int[] stockSpan(int[] price){
 		
 		int size = price.length;
@@ -129,6 +133,7 @@ public class Stack_Algo {
 		return span;
 	}
 	
+	/*	Solution to the next greatest integer problem	*/
 	public int[] nextGreaterInteger(int[] arr){
 		
 		int size = arr.length;
@@ -147,7 +152,7 @@ public class Stack_Algo {
 		
 		return nge;
 	}
-	
+	/*	Evaluating a posfix expression	*/
 	public int evaluatePostfix(String exp){
 		
 		Stack<Integer> integerStack = new Stack<Integer>();
@@ -157,31 +162,31 @@ public class Stack_Algo {
 		for(int i = 0;i < data.length;i++){
 			char ch = data[i].toCharArray()[0];
 
-				if(p.isOperator(ch)){
+			if(p.isOperator(ch)){
 				int a = integerStack.pop();
-				System.out.println(ch + " " + a);
 				int b = integerStack.pop();
 				
 				if(data[i].equals("*")){
-					integerStack.push(a*b);
-				}
+						integerStack.push(a*b);
+					}
 				else if(data[i].equals("+")){
 					integerStack.push(a+b);
-				}
+					}
 				else if(data[i].equals("-")){
 					integerStack.push(a-b);
-				}
+					}	
 				else if(data[i].equals("-")){
 					integerStack.push(a/b);
+					}
 				}
-			}
 			else{
 				integerStack.push(Integer.parseInt(data[i]));
 			}
 		}
 		return integerStack.peek();
 	}
-
+	
+	/*	Utility method for Towers of Hanoi implementation	*/
 	public int makeMove(ArrayList<Stack<Integer>> st,int src,int dest){
 		
 		if(st.get(src).isEmpty())
@@ -195,6 +200,7 @@ public class Stack_Algo {
 
 	}
 	
+	/*	Towers of Hanoi implementation	*/
 	public void solveTowersOfHanoi(ArrayList<Stack<Integer>> st,int n,int src,int dest){
 		
 		if(n == 1){
@@ -209,6 +215,7 @@ public class Stack_Algo {
 			
 	}
 	
+	/*	Utility method for Towers of Hanoi implementation	*/
 	public void initializeTowersOfHanoi(int n,int src,int dest){
 		
 		ArrayList<Stack<Integer>> st = new ArrayList<Stack<Integer>>();
@@ -225,9 +232,6 @@ public class Stack_Algo {
 			st.get(src).push(i);
 		}
 		
-		int other = 3 - src - dest;
-		
-		int count = 0;
 		solveTowersOfHanoi(st,n,src,dest);
 		
 	}
