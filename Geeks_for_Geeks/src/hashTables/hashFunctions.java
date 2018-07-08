@@ -10,7 +10,7 @@ import linkedlist.LinkedList;
 import sorting_algos.sortingAlgos;
 
 public class hashFunctions {
-
+	/*	Finds whether an array is a subset of another array	*/
 	public boolean subsetArray(int[] arr1,int[] arr2){
 		
 		HashSet<Integer> set = new HashSet<Integer>();
@@ -38,7 +38,7 @@ public class hashFunctions {
 		}
 		return flag;
 	}
-
+	/*	Given an array A[] and a number x, check for pair in A[] with sum as x	*/
 	public boolean pairSum(int[] arr,int sum){
 		
 		boolean flag = false;
@@ -58,7 +58,8 @@ public class hashFunctions {
 		
 		return flag;
 	}
-
+	/*	Check if a given array contains duplicate elements within 
+	 * 	k distance from each other	*/
 	public boolean duplicateAtK(int[] arr,int k){
 		
 		boolean flag = false;
@@ -77,7 +78,7 @@ public class hashFunctions {
 		
 		return flag;
 	}
-
+	/*	Given an array of pairs, find all symmetric pairs in it	*/
 	public ArrayList<Pair<Integer,Integer>> returnSymmetricPairs(int[][] arr){
 		
 		ArrayList<Pair<Integer,Integer>> sym = new ArrayList<Pair<Integer,Integer>>();
@@ -96,7 +97,7 @@ public class hashFunctions {
 		}	
 		return sym;
 	}
-
+	/*	Group multiple occurrence of array elements ordered by first occurrence	*/
 	public int[] multipleOccurences(int[] arr){
 		
 		HashMap<Integer,Integer> elementCount = new LinkedHashMap<Integer,Integer>();
@@ -126,7 +127,7 @@ public class hashFunctions {
 		
 		return arr1;
 	}
-
+	/*	How to check if two given sets are disjoint?	*/
 	public boolean disjointSets(int[] arr1,int[] arr2){
 		
 		boolean flag = true;
@@ -145,7 +146,7 @@ public class hashFunctions {
 		return flag;
 		
 	}
-
+	/*	Pair with given product 	*/
 	public boolean pairProduct(int[] arr,int prod){
 		
 		HashSet<Integer> set = new HashSet<Integer>();
@@ -163,7 +164,7 @@ public class hashFunctions {
 		
 		return flag;
 	}
-
+	/*	Find missing elements of a range	*/
 	public ArrayList<Integer> missingElements(int[] arr){
 		
 		ArrayList<Integer> missing = new ArrayList<Integer>();
@@ -186,7 +187,7 @@ public class hashFunctions {
 		}
 		return missing;
 	}
-
+	/*	Convert an array to reduced form	*/
 	public int[] reducedForm(int[] arr){
 		
 		int[] reduced = new int[arr.length];
@@ -210,7 +211,7 @@ public class hashFunctions {
 		return reduced;
 		
 	}
-
+	/*	Find Itinerary from a given list of tickets	*/
 	public void printItinerary(HashMap<String,String> data_set){
 		
 		ArrayList<String> to = new ArrayList<String>();
@@ -239,7 +240,7 @@ public class hashFunctions {
 		}
 		
 	}
-
+	/*	Find number of Employees Under every Employee	*/
 	public HashMap<String,Integer> managerEmployee(HashMap<String,String> dataSet){
 		
 		HashMap<String,ArrayList<String>> managerEmpl = new HashMap<String,ArrayList<String>>();
@@ -285,7 +286,7 @@ public class hashFunctions {
 		
 		return noOfEmployees;
 	}
-
+	/*	Count pairs with given sum	*/
 	public void elementSum(int[] arr){
 		
 		HashMap<Integer,Pair<Integer,Integer>> sum = new HashMap<Integer,Pair<Integer,Integer>>();
@@ -315,11 +316,10 @@ public class hashFunctions {
 		return;
 		
 	}
-
+	/*	Check if an array can be divided into pairs whose sum is divisible by k	*/
 	public boolean pairSumK(int[] arr,int k){
 		
 		boolean flag = true;
-		
 		int[] mod_arr = new int[arr.length];
 		HashMap<Integer,Integer> mod_count = new HashMap<Integer,Integer>();
 		
@@ -351,7 +351,7 @@ public class hashFunctions {
 		return flag;
 		
 	}
-
+	/*	Find the largest subarray with 0 sum	*/
 	public int largestSubArray(int[] arr){
 		
 		HashMap<Integer,Integer> sums = new HashMap<Integer,Integer>();
@@ -378,7 +378,7 @@ public class hashFunctions {
 		
 		return max_length;
 	}
-
+	/*	Longest Consecutive Subsequence	*/
 	public int longestConsecutive(int[] arr){
 		
 		HashSet<Integer> set = new HashSet<Integer>();

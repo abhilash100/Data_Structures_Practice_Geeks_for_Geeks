@@ -14,8 +14,8 @@ public class Stack_Algo {
 				return 0;
 			else if(c == '*' || c == '/')
 				return 1;
-			//else if(c == '(' || c == ')')
-			//	return 2;
+			else if(c == '(' || c == ')')
+				return 2;
 			else
 				return -1;
 		}
@@ -51,21 +51,28 @@ public class Stack_Algo {
 			post_expr.append(c);
 		//	Operator
 		else{
+			System.out.println("Present Character : " + c);
+			System.out.println(op_stack.toString());
 				if(c == '('){
 					op_stack.push(c);
 				}
 				else if(c == ')'){
 					while(!op_stack.isEmpty() && op_stack.peek() != '(')
+						//System.out.println(op_stack.pop());
 						post_expr.append(op_stack.pop());
+					if(!op_stack.isEmpty() && op_stack.peek() == '(')
+						op_stack.pop();
 					}	
+				
 				else{
 					if(op_stack.isEmpty())
 						op_stack.push(c);
 					else{
-						if(op_stack.peek() == '(')
-							op_stack.pop();
+//						if(op_stack.peek() == '(')
+//							op_stack.pop();
 						while(!op_stack.isEmpty() 
-								&& obj.getPrecedence(c) <= obj.getPrecedence(op_stack.peek())){
+								&& obj.getPrecedence(c) <= obj.getPrecedence(op_stack.peek())
+								&& op_stack.peek() != '('){
 							post_expr.append(op_stack.pop());
 						}
 						op_stack.push(c);

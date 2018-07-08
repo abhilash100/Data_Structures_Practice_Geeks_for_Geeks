@@ -1,8 +1,5 @@
-/binary_search_tree/
-/binary_tree/
-/hashTables/
-/linkedlist/
 /main_package/
-/sorting_algos/
 /stack_algo/
-/string_algos/
+/binary_tree/
+/binary_search_tree/
+/hashTables/

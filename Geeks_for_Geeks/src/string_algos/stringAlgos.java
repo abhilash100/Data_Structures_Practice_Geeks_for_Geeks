@@ -52,7 +52,7 @@ public class stringAlgos {
 
 	/*	Used in the KMP algorithm
 	 * 	Used to find the "longest possible prefix that is also a suffix(LPS)" */
-	private int[] getLps(String pattern){
+	public int[] getLps(String pattern){
 		
 		int[] lps = new int[pattern.length()];
 		

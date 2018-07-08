@@ -21,50 +21,50 @@ import string_algos.stringAlgos;
 public class MainClass {
 public static void main(String args[]){
 
-	string_algos();
-	stack_test();
-	sorting_algos();
-	hash_test();
-	linkedList_test();
+	//string_algos();
+	//stack_test();
+	//sorting_algos();
+	//hash_test();
+	//linkedList_test();
+	//binaryTree_test();
+	bst_test();
 }
 
 public static void bst_test(){
 	
-//	BST bst = new BST();
-//	
-//	bst.insert(30);
-//	bst.insert(40);
-//	bst.insert(8);
-//	bst.insert(6);
-//	bst.insert(45);
-//	bst.insert(15);
+	BST bst = new BST();
 	
-//	bst.delete(6);
-//	bst.delete(40);
-//	bst.inOrder(bst.getRoot());
-//	System.out.println(bst.binarySearch(bst.getRoot(), 5));
+	bst.insert(30);
+	bst.insert(40);
+	bst.insert(8);
+	bst.insert(6);
+	bst.insert(45);
+	bst.insert(15);
 	
-//	int[] preOrder = {10,5,1,7,40,50};
-//	bst.inOrder(bst.bstPreOrder(preOrder));
+	bst.delete(6);
+	bst.delete(40);
+	bst.inOrder(bst.getRoot());
+	System.out.println(bst.binarySearch(bst.getRoot(), 5));
 	
-//	bst.inOrder(bst.bstToSumBt(bst.getRoot()));
+	int[] preOrder = {10,5,1,7,40,50};
+	bst.inOrder(bst.bstPreOrder(preOrder));
+	bst.inOrder(bst.bstToSumBt(bst.getRoot()));
+	bst.inOrder(bst.bstToGreaterSumBt(bst.getRoot()));
 	
-//	bst.inOrder(bst.bstToGreaterSumBt(bst.getRoot()));
+	int[] levelOrder = {7, 4, 12, 3, 6, 8, 1, 5, 10}; 
+	bst.levelOrderBst(levelOrder);
 	
-//	int[] levelOrder = {7, 4, 12, 3, 6, 8, 1, 5, 10}; 
-//	bst.levelOrderBst(levelOrder);
+	Binary_Tree bt = new Binary_Tree(1);
+	bt.getRoot().setLeft(new Node(2));
+	bt.getRoot().setRight(new Node(3));
+	bt.getRoot().getLeft().setLeft(new Node(4));
+	bt.getRoot().getLeft().setRight(new Node(5));
+	bt.getRoot().getLeft().getLeft().setLeft(new Node(6));
+	bt.getRoot().getLeft().getRight().setRight(new Node(7));
+	bt.getRoot().getRight().setLeft(new Node(8));
+	bt.getRoot().getRight().setRight(new Node(9));
 	
-//	Binary_Tree bt = new Binary_Tree(1);
-//	bt.getRoot().setLeft(new Node(2));
-//	bt.getRoot().setRight(new Node(3));
-//	bt.getRoot().getLeft().setLeft(new Node(4));
-//	bt.getRoot().getLeft().setRight(new Node(5));
-//	bt.getRoot().getLeft().getLeft().setLeft(new Node(6));
-//	bt.getRoot().getLeft().getRight().setRight(new Node(7));
-//	bt.getRoot().getRight().setLeft(new Node(8));
-//	bt.getRoot().getRight().setRight(new Node(9));
-//	
-//	bst.preOrder(bst.btToBst(bt.getRoot()));
+	bst.preOrder(bst.btToBst(bt.getRoot()));
 	
 }
 
@@ -80,109 +80,100 @@ public static void binaryTree_test(){
 	bt.getRoot().getRight().setLeft(new Node(8));
 	bt.getRoot().getRight().setRight(new Node(9));
 	
-//	System.out.print("InOrder : ");
-//	bt.inOrderRecursion(bt.getRoot());
-//	System.out.print("\nPreOrder : ");
-//	bt.preOrderRecursion(bt.getRoot());
-//	System.out.print("\nPostOrder : ");
-//	bt.postOrderRecursion(bt.getRoot());
+	System.out.print("\nInOrder Recursion: ");
+	bt.inOrderRecursion(bt.getRoot());
+	System.out.print("\nPreOrder Recursion: ");
+	bt.preOrderRecursion(bt.getRoot());
+	System.out.print("\nPostOrder : ");
+	bt.postOrderRecursion(bt.getRoot());
+	System.out.print("\nInOrder Stack: ");
+	bt.inOrderStack(bt.getRoot());
+	System.out.print("\nPreOrder Stack: ");
+	bt.preOrderStack(bt.getRoot());
+	System.out.print("\nInOrder Morris : ");
+	bt.inOrderMorris(bt.getRoot());
+	System.out.print("\nPreOrder Morris : ");
+	bt.preOrderMorris(bt.getRoot());
+	System.out.println("Post Order Two Stack");
+	bt.postOrderTwoStack(bt.getRoot());
+	System.out.println("Post Order One Stack");
+	bt.postOrderOneStack(bt.getRoot());
 	
-//	System.out.print("InOrderMorris : ");
-//	bt.inOrderMorris(bt.getRoot());
-//	
-//	System.out.print("PreOrderMorris : ");
-//	bt.preOrderMorris(bt.getRoot());
+	System.out.println("Level Order Traversal using Queue: ");
+	bt.levelOrderQueue(bt.getRoot());
+	System.out.println("Level Order Traversal : ");
+	bt.levelOrder(bt.getRoot());
+	System.out.println("Reverse Level Order Traversal : ");
+	bt.reverseLevelOrder(bt.getRoot());
 	
-//	System.out.println("Post Order Two Stack");
-//	bt.postOrderTwoStack(bt.getRoot());
+	int inOrder[] = {6,4,2,5,7,1,8,3,9};
+	int preOrder[] = {1,2,4,6,5,7,3,8,9};
 	
-//	System.out.println("Post Order One Stack");
-//	bt.postOrderOneStack(bt.getRoot());
+	Binary_Tree.preInPost(preOrder, inOrder, 0, inOrder.length - 1);
+	for(int i = 0;i < Binary_Tree.postOrderPrint.length;i++)
+		System.out.print(Binary_Tree.postOrderPrint[i] + " ");
 	
-//	System.out.println("Level Order Traversal : ");
-//	bt.levelOrder(bt.getRoot());
+	Node node = Binary_Tree.preInTree(preOrder, inOrder, 0, inOrder.length - 1);
+	bt.preOrderStack(node);
+	System.out.println("PreInPost : ");
+	Binary_Tree.preInPost(preOrder, inOrder, 0, inOrder.length - 1);
+	System.out.println("Diagonal Traversal : ");
+	bt.printDiagonal(bt.getRoot());
+	System.out.println("Leaf Traversal : ");
+	bt.leafTraversal(bt.getRoot());
+	System.out.println("Vertical Order Traversal : ");
+	bt.verticalOrder(bt.getRoot());
+	System.out.println("Boundary Traversal : ");
+	bt.printBoundary(bt.getRoot());
 	
-//	System.out.println("Reverse Level Order Traversal : ");
-//	bt.reverseLevelOrder(bt.getRoot());
+	  int in[] = {4, 8, 10, 12, 14, 20, 22};
+    int level[] = {20, 8, 22, 4, 12, 10, 14};
+    bt.inOrderRecursion(bt.inLevelConstructTree(in, level));
 	
-//	int inOrder[] = {6,4,2,5,7,1,8,3,9};
-//	int preOrder[] = {1,2,4,6,5,7,3,8,9};
+	int pre[] = {1,2,4,6,5,7,3,8,9};
+	int post[] = {6,4,7,5,2,8,9,3,1};
+	bt.postOrderRecursion(bt.prePostConstructFullTree(pre,post));
 	
-//	Binary_Tree.preInPost(preOrder, inOrder, 0, inOrder.length - 1);
-//	for(int i = 0;i < Binary_Tree.postOrderPrint.length;i++)
-//		System.out.print(Binary_Tree.postOrderPrint[i] + " ");
+	int preO[] = {1,2,4,6,7,5,8,9,3};
+	char preLN[] = {'N','N','N','L','L','N','L','L','L'};
+	bt.preSpecialIndex = 0;
+	bt.preOrderRecursion(bt.preOrderSpecialTree(preO,preLN));
 	
-//	Node node = Binary_Tree.preInTree(preOrder, inOrder, 0, inOrder.length - 1);
-//	bt.preOrderStack(node);
+	System.out.println(bt.countNodes(bt.getRoot()));
 	
-//	System.out.println("PreInPost : ");
-//	Binary_Tree.preInPost(preOrder, inOrder, 0, inOrder.length - 1);
+	bt.ancestorMatrixFromTree(bt.getRoot());
+	bt.printAncestorMatrix();
 	
-//	System.out.println("Diagonal Traversal : ");
-//	bt.printDiagonal(bt.getRoot());
+	int[][] ancestorMatrix = {{0, 1, 1, 1, 1, 1, 1, 1, 1}, 
+	{0,0,0,1,1,1,1,0,0}, 
+	{0,0,0,0,0,0,0,1,1},
+	{0,0,0,0,0,1,0,0,0}, 
+	{0,0,0,0,0,0,1,0,0}, 
+	{0,0,0,0,0,0,0,0,0}, 
+	{0,0,0,0,0,0,0,0,0},  
+	{0,0,0,0,0,0,0,0,0},  
+	{0,0,0,0,0,0,0,0,0} };
 	
-//	System.out.println("Leaf Traversal : ");
-//	bt.leafTraversal(bt.getRoot());
+	bt.preOrderRecursion(bt.ancestorToTree(ancestorMatrix));
 	
-//	System.out.println("Vertical Order Traversal : ");
-//	bt.verticalOrder(bt.getRoot());
+	int[] inOrder1 = {1,5,10,40,30,15,28,20};
+	bt.inOrderRecursion((bt.inOrderSpecialInitialize(inOrder1)));
 	
-//	System.out.println("Boundary Traversal : ");
-//	bt.printBoundary(bt.getRoot());
+	int[] parentArray = {1,5,5,2,2,-1,3};
+	bt.inOrderRecursion(bt.parentArrayToTreeInitialize(parentArray));
 	
-//	  int in[] = {4, 8, 10, 12, 14, 20, 22};
-//    int level[] = {20, 8, 22, 4, 12, 10, 14};
-//	
-//      bt.inOrderRecursion(bt.inLevelConstructTree(in, level));
+	bt.inOrderRecursion(bt.toThreaded(bt.getRoot()));
 	
-//	int pre[] = {1,2,4,6,5,7,3,8,9};
-//	int post[] = {6,4,7,5,2,8,9,3,1};
-//	
-//	bt.preOrderRecursion(bt.prePostConstructFullTree(pre,post));
+	System.out.println(bt.nodePresent(bt.getRoot(), 6));
 	
-//	int pre[] = {1,2,4,6,7,5,8,9,3};
-//	char preLN[] = {'N','N','N','L','L','N','L','L','L'};
-//	
-//	bt.preSpecialIndex = 0;
-//	bt.preOrderRecursion(bt.preOrderSpecialTree(pre,preLN));
+	ArrayList<Integer> al = new ArrayList<Integer>();
+	al = bt.findPathFromRoot(bt.getRoot(), 6);	
+	for(Integer i : al){
+		System.out.print(i + " ");
+	}
 	
-//	System.out.println(bt.countNodes(bt.getRoot()));
-	
-//	bt.ancestorMatrixFromTree(bt.getRoot());
-//	bt.printAncestorMatrix();
-	
-//	int[][] ancestorMatrix = {{0, 1, 1, 1, 1, 1, 1, 1, 1}, 
-//	{0,0,0,1,1,1,1,0,0}, 
-//	{0,0,0,0,0,0,0,1,1},
-//	{0,0,0,0,0,1,0,0,0}, 
-//	{0,0,0,0,0,0,1,0,0}, 
-//	{0,0,0,0,0,0,0,0,0}, 
-//	{0,0,0,0,0,0,0,0,0},  
-//	{0,0,0,0,0,0,0,0,0},  
-//	{0,0,0,0,0,0,0,0,0} };
-//	
-//	bt.preOrderRecursion(bt.ancestorToTree(ancestorMatrix));
-	
-//	int[] inOrder1 = {1,5,10,40,30,15,28,20};
-//	bt.inOrderRecursion((bt.inOrderSpecialInitialize(inOrder1)));
-	
-//	int[] parentArray = {1,5,5,2,2,-1,3};
-//	bt.inOrderRecursion(bt.parentArrayToTreeInitialize(parentArray));
-	
-//	bt.inOrderRecursion(bt.toThreaded(bt.getRoot()));
-	
-//	System.out.println(bt.nodePresent(bt.getRoot(), 6));
-	
-//	ArrayList<Integer> al = new ArrayList<Integer>();
-//	al = bt.findPathFromRoot(bt.getRoot(), 6);
-	
-//	for(Integer i : al){
-//		System.out.print(i + " ");
-//	}
-	
-//	System.out.println(bt.findLCA(bt.getRoot(), 9, 6));
-	
-//	System.out.println(bt.distTwoNodes(bt.getRoot(), 1, 6));
+	System.out.println(bt.findLCA(bt.getRoot(), 9, 6));	
+	System.out.println(bt.distTwoNodes(bt.getRoot(), 1, 6));
 	
 }
 
@@ -214,30 +205,30 @@ public static void linkedList_test(){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	//System.out.println("Size : " + ll.getSize());
-	//ll.deleteFirst();
-	//ll.deleteLast();
-	//System.out.println("Size : " + ll.getSize());
-	//ll.printList();	
+	System.out.println("Size : " + ll.getSize());
+	ll.deleteFirst();
+	ll.deleteLast();
+	System.out.println("Size : " + ll.getSize());
+	ll.printList();	
 }
 
 public static void stack_test(){
 	Stack_Algo stack_algo = new Stack_Algo();
 	
-//	System.out.println(("(a+b)*(c+d)-f+g*k"));
-//	System.out.println(stack_algo.infixToPostfix("(a+b)*(c+d)-f+g*k"));
-//	System.out.println(stack_algo.balancedExpr("(a+b)*(c+d)-f+g*[{]}k"));
+	System.out.println(("(a+b)*(c+d)-f+g*k"));
+	System.out.println(stack_algo.infixToPostfix("(a+b)*(c+d)-f+g*k"));
+	System.out.println(stack_algo.balancedExpr("(a+b)*(c+d)-f+g*[{]}k"));
 	
-//	int price[] = {100,80,60,70,60,75,85};
-//	int[] span = (stack_algo.stockSpan(price));
-//	for(int i = 1;i < span.length;i++)
-//		System.out.print(span[i] + " ");
+	int price[] = {100,80,60,70,60,75,85};
+	int[] span = (stack_algo.stockSpan(price));
+	for(int i = 1;i < span.length;i++)
+		System.out.print(span[i] + " ");
 	
-//	int nge[] = stack_algo.nextGreaterInteger(price);
-//	for(int i = 0;i < nge.length;i++)
-//		System.out.print(nge[i] + " ");
+	int nge[] = stack_algo.nextGreaterInteger(price);
+	for(int i = 0;i < nge.length;i++)
+		System.out.print(nge[i] + " ");
 
-//	System.out.println(stack_algo.evaluatePostfix("1 2 * 6 +"));
+	System.out.println(stack_algo.evaluatePostfix("1 2 * 6 +"));
 	
 	stack_algo.initializeTowersOfHanoi(8, 1, 2);
 	////////
@@ -250,15 +241,15 @@ public static void sorting_algos(){
 	int[] arr = algo.generateRandomArray(10000);
 	algo.printArray(arr);
 	
-	//long currTime = System.currentTimeMillis();
-	//algo.printArray(algo.bubbleSort(arr));
-	//long nowTime = System.currentTimeMillis();
-	//System.out.println("Time taken : " + (nowTime-currTime));
-	//algo.printArray(algo.selectionSort(arr));
-	//algo.printArray(algo.bubbleSort(arr));
-	//algo.printArray(algo.insertionSort(arr));
-	//algo.printArray(algo.mergeSort(arr,0,arr.length-1));
-	//algo.printArray(algo.quickSort(arr, 0, arr.length-1));
+	long currTime = System.currentTimeMillis();
+	algo.printArray(algo.bubbleSort(arr));
+	long nowTime = System.currentTimeMillis();
+	System.out.println("Time taken : " + (nowTime-currTime));
+	algo.printArray(algo.selectionSort(arr));
+	algo.printArray(algo.bubbleSort(arr));
+	algo.printArray(algo.insertionSort(arr));
+	algo.printArray(algo.mergeSort(arr,0,arr.length-1));
+	algo.printArray(algo.quickSort(arr, 0, arr.length-1));
 	
 }
 
@@ -268,11 +259,11 @@ public static void hash_test(){
 	
 	int[] arr1 = {6,8,5,1};
 	int[] arr2 = {8};
-	//int[] arr = {1,2,3,1,2,3,4};
-	//int arr3[][] = {{11, 20}, {30, 40}, {5, 10}, {40, 30}, {10, 5}};
-	//System.out.println(hf.subsetArray(arr1, arr2));
-	//System.out.println(hf.pairSum(arr1, 11));
-	//System.out.println(hf.duplicateAtK(arr, 3));
+	int[] arr = {1,2,3,1,2,3,4};
+	int arr3[][] = {{11, 20}, {30, 40}, {5, 10}, {40, 30}, {10, 5}};
+	System.out.println(hf.subsetArray(arr1, arr2));
+	System.out.println(hf.pairSum(arr1, 11));
+	System.out.println(hf.duplicateAtK(arr, 3));
 	
 //	ArrayList<Pair<Integer,Integer>> sym = new ArrayList<Pair<Integer,Integer>>();
 //	
@@ -333,13 +324,13 @@ public static void string_algos(){
 	stringAlgos algos = new stringAlgos();
 	String str = "AABAACAADAABAAABAA";
     String pattern = "AABA";
-    //algos.naivePatternSearch(pattern, str);
+    algos.naivePatternSearch(pattern, str);
 	algos.kmpSearch(pattern, str);
-    //algos.rubinKarpSearch(pattern, str);
-    //algos.zSearch(pattern, str);
+    algos.rubinKarpSearch(pattern, str);
+    algos.zSearch(pattern, str);
 	
-//	int[] lps = algos.getLps("ABABCABAB");
-//	for(int i = 0;i < lps.length;i++)
-//		System.out.print(lps[i] + " ");
+	int[] lps = algos.getLps("AABAACAADAABAAABAA");
+	for(int i = 0;i < lps.length;i++)
+		System.out.print(lps[i] + " ");
 }
 }

@@ -2,6 +2,7 @@ package binary_tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -36,6 +37,7 @@ public class Binary_Tree {
 		root.left = root.right = null;
 	}
 	
+	/*	Checks if a node is a leaf node or not	*/
 	public boolean isLeaf(Node currNode){
 		
 		if(currNode == null)
@@ -47,10 +49,11 @@ public class Binary_Tree {
 			return false;
 	}
 	
+	/*	Prints the data of the current Node	*/
 	public void printNode(Node node){
 		System.out.print(node.data + " ");
 	}
-	
+	/*	Inorder traversal of tree using recursion	*/
 	public void inOrderRecursion(Node currNode){
 		if(currNode == null)
 			return;
@@ -60,7 +63,7 @@ public class Binary_Tree {
 		inOrderRecursion(currNode.right);
 		
 	}
-	
+	/*	Preorder traversal of tree using recursion	*/
 	public void preOrderRecursion(Node currNode){
 		if(currNode == null)
 			return;
@@ -69,7 +72,7 @@ public class Binary_Tree {
 		preOrderRecursion(currNode.left);
 		preOrderRecursion(currNode.right);
 	}
-	
+	/*	Postorder traversal of tree using recursion	*/
 	public void postOrderRecursion(Node currNode){
 		if(currNode == null)
 			return;
@@ -78,7 +81,7 @@ public class Binary_Tree {
 		postOrderRecursion(currNode.right);
 		System.out.print(currNode.data + " ");
 	}
-	
+	/*	Pre order traversal using stack	*/
 	public void preOrderStack(Node currNode){
 			
 		if(currNode == null)
@@ -96,7 +99,7 @@ public class Binary_Tree {
 				st.push(popNode.left);
 		}
 	}
-	
+	/*	In order traversal using stack	*/
 	public void inOrderStack(Node currNode){
 			
 		if(currNode == null)
@@ -109,7 +112,7 @@ public class Binary_Tree {
 			st.push(node);
 			node = node.left;
 		}
-		
+
 		while(!st.isEmpty()){
 			
 			Node popNode = st.pop();
@@ -124,7 +127,7 @@ public class Binary_Tree {
 			}
 		}
 	}
-	
+	/*	In order traversal using Morris traversal(treaded binary trees)	*/
 	public void inOrderMorris(Node currNode){
 		
 		if(currNode == null)
@@ -132,6 +135,7 @@ public class Binary_Tree {
 		
 		Node curr = currNode;
 		Node prev = null;
+		
 		while(curr != null){
 			if(curr.left == null){
 				printNode(curr);
@@ -154,7 +158,7 @@ public class Binary_Tree {
 			}	
 		}
 	}
-	
+	/*	Pre order traversal using Morris traversal(threaded binary trees)	*/
 	public void preOrderMorris(Node currNode){
 		
 		if(currNode == null)
@@ -182,7 +186,7 @@ public class Binary_Tree {
 			}
 		}	
 	   }
-	
+	/*	Post order traversal using two stacks	*/
 	public void postOrderTwoStack(Node currNode){ 		
 		
 		if(currNode == null)
@@ -203,8 +207,8 @@ public class Binary_Tree {
 		while(!st2.isEmpty())
 			printNode(st2.pop());
 	}
-	
-	public void postOrderOneStack(Node currNode){	// To be reviewed later	
+	/*	Post order travrsal using single stack*/
+	public void postOrderOneStack(Node currNode){	// TODO : To be reviewed later	
 		// Copied from Geeks for Geeks. Slightly complex
 		
 		if(currNode == null)
@@ -244,7 +248,7 @@ public class Binary_Tree {
             prev = curr;
         }	
 	  }
-	
+	/*	Level order traversal using queue	*/
 	public void levelOrderQueue(Node currNode){
 		
 		if(currNode == null)
@@ -263,7 +267,7 @@ public class Binary_Tree {
 				q.add(removedNode.right);
 		}
 	}
-	
+	/*	Reverse Level order traversal using queue	*/
 	public void reverseLevelOrder(Node currNode){
 		
 		if(currNode == null)
@@ -291,7 +295,7 @@ public class Binary_Tree {
 			System.out.println();
 	}
    }
-	
+	/*	Constructing tree when preOrder and irOrder traversals are given	*/
 	public static Node preInTree(int[] preOrder,int[] inOrder,int start,int end){
 		
 		if(start > end)
@@ -317,7 +321,7 @@ public class Binary_Tree {
 				
 		return root;
 	}
-	
+	/*	Prints out post order traversal using preOrder and inOrder	*/
 	public static void preInPost(int[] preOrder,int[] inOrder,int start,int end){
 		
 		if(start > end)
@@ -346,36 +350,27 @@ public class Binary_Tree {
 		System.out.print(rootVal + " ");
 		}
 	}
-	
+	/*	Utility method used to print out diagonal traversl of binary tree	*/
 	public void diagonalTraversal(Node currNode, int d, HashMap<Integer
 			,ArrayList<Integer>> diagonalElements){
-		
 		
 		if(currNode == null)
 			return;
 		
-		//System.out.println(currNode.data + " " + d);
-		
 		if(diagonalElements.get(d) == null){
-			ArrayList al = new ArrayList<Integer>();
+			ArrayList<Integer> al = new ArrayList<Integer>();
 			al.add(currNode.data);
 			diagonalElements.put(d, al);
-			//System.out.println(currNode.data + " " + d);
-
 		}
 		else{
 			diagonalElements.get(d).add(currNode.data);
 		}
 		
-		ArrayList<Integer> a = diagonalElements.get(d);
-		
+		//ArrayList<Integer> a = diagonalElements.get(d);
 		diagonalTraversal(currNode.right,d,diagonalElements);
-		
 		diagonalTraversal(currNode.left,d+1,diagonalElements);
-		
-		
 	}
-	
+	/*	Prints out diagonal traversal of the binary tree	*/
 	public void printDiagonal(Node currNode){
 	
 		if(currNode== null)
@@ -394,7 +389,7 @@ public class Binary_Tree {
 		}
 		
 	}
-	
+	/*	TODO : Must review and remove this method	*/
 	public void diagonalTraversalBkp(Node currNode){
 		
 		if(currNode == null)
@@ -427,7 +422,8 @@ public class Binary_Tree {
 			}
 		}
 	}
-
+	/*	Prints out all the leaf Nodes. 
+	 * Traverses all nodes but only prints out the leaf nodes	*/
 	public void leafTraversal(Node currNode){
 		
 		if(currNode == null)
@@ -457,7 +453,8 @@ public class Binary_Tree {
 		}
 		
 	}
-
+	/*	Does level order traversal of the binary tree.
+	 * Prints each level of nodes in a different line	*/
 	public void levelOrder(Node currNode){
 		
 		if(currNode == null)
@@ -485,7 +482,8 @@ public class Binary_Tree {
 			}	
 		}	
 	}
-	
+	/*	Prints out vertical level traversal of the binary tree.
+	 * Prints each vertical level of nodes on a different line	*/
 	public void verticalOrder(Node currNode){
 		
 		if(currNode == null)
@@ -500,7 +498,7 @@ public class Binary_Tree {
 			System.out.println(entry.getValue());
 		}
 	}
-	
+	/*	Utility method for vertical level traversal	*/
 	public void getVerticalOrder(HashMap<Integer,ArrayList<Integer>> horizontalDistance,int hd,Node currNode){
 
 		if(currNode == null)
@@ -518,7 +516,7 @@ public class Binary_Tree {
 		getVerticalOrder(horizontalDistance,hd - 1,currNode.left);
 		getVerticalOrder(horizontalDistance,hd + 1,currNode.right);
 	}
-	
+	/*	Prints out the leaves of the binary tree	*/
 	public void printLeaves(Node currNode){
 		
 		if(currNode == null)
@@ -530,7 +528,7 @@ public class Binary_Tree {
 		printLeaves(currNode.right);
 		
 	}
-	
+	/*	Utility method used for boundar traversal	*/
 	public void printLeftBoundary(Node currNode){
 		
 		if(currNode == null)
@@ -545,7 +543,7 @@ public class Binary_Tree {
 			printLeftBoundary(currNode.right);
 		}
 	}
-	
+	/*	Utility method used for boundar traversal	*/
 	public void printRightBoundary(Node currNode){
 		
 		if(currNode == null)
@@ -561,7 +559,7 @@ public class Binary_Tree {
 		}
 		
 	}
-	
+	/*	Prints out the boundary traversal of the binary tree	*/
 	public void printBoundary(Node currNode){
 		
 		if(currNode == null)
@@ -572,7 +570,8 @@ public class Binary_Tree {
 		printRightBoundary(currNode);
 
 	}
-	
+	/*	Returns the root node of constructed binary tree	
+	 * 	Binary tree is constructed using level and in order traversal	*/
 	public Node inLevelTree(Node currNode,int[] inOrder,int[] levelOrder,int start,int end){
 		
 		if(start > end)
@@ -605,17 +604,20 @@ public class Binary_Tree {
 		return currNode;
 		
 	}
-	
+	/*	Method used to initialize the inLevel tree method
+	 * 	TODO : Try and remove this	*/
 	public Node inLevelConstructTree(int[] inOrder,int[] levelOrder){
 		Node currNode = null;
 		return inLevelTree(currNode,inOrder,levelOrder,0,inOrder.length - 1);
 	}
-	
+	/*	Method used to construct binary tree using preOrder 
+	 * and postOrder traversals.	
+	 * TODO : Resolve bug. Not working correctly	*/
 	public Node prePostConstructFullTree(int[] preOrder, int[] postOrder){
-		int prePostTree = 0;
 		return prePostTree(preOrder,postOrder,preOrder.length - 1,preOrder.length);
 	}
-
+	/*	Recursive method used to construct binary tree from 
+	 * 	pre and post order traversals	*/
 	private Node prePostTree(int[] preOrder, int[] postOrder,int l,int r) {
 
 		if(prePostTree >= preOrder.length || l > r)
@@ -640,7 +642,9 @@ public class Binary_Tree {
 		
 		return root;
 	}
-
+	/*	Special tree is a binary tree where each node has 0 or 2 children	
+	 * 	This method constructs a binary tree based on the preOrder traversal and 
+	 * 	whether the node is a leaf of not*/
 	public Node preOrderSpecialTree(int[] preOrder,char[] leafNotLeaf){
 		
 	Node root =  new Node(preOrder[preSpecialIndex]);
@@ -655,7 +659,7 @@ public class Binary_Tree {
 	root.right = preOrderSpecialTree(preOrder,leafNotLeaf);
 	return root;
 	}
-
+	/*	Counts the number of nodes in the binary tree	*/
 	public int countNodes(Node currNode){
 
 		if(currNode != null){
@@ -669,7 +673,7 @@ public class Binary_Tree {
 		return count;
 		
 	}
-	
+	/*	Method used to create ancestor matrix from binary tree	*/
 	public void ancestorMatrixFromTree(Node currNode){
 		
 		if(currNode == null)
@@ -684,13 +688,12 @@ public class Binary_Tree {
 			}
 		}
 		
-		ArrayList rootAnces = new ArrayList<Integer>();
+		ArrayList<Integer> rootAnces = new ArrayList<Integer>();
 		rootAnces.add(currNode.data - 1);
 		
 		ancestorCreate(currNode,rootAnces);
-
  	}
-	
+	/*	Utility method to used to create ancestor matrix	*/
 	public void ancestorCreate(Node currNode,ArrayList<Integer> ances){
 		
 		if(currNode == null)
@@ -709,7 +712,7 @@ public class Binary_Tree {
 		ancestorCreate(currNode.right,newances);
 		
 	}
-
+	/*	Prints out the ancestor matrix	*/
 	public void printAncestorMatrix(){
 		
 		for(int i =0;i < ancestorMatrix.length;i++){
@@ -719,7 +722,8 @@ public class Binary_Tree {
 			System.out.println();
 		}
 	}
-	
+	/*	Constructs a tree from the ancestor matrix	
+	 * TODO : Review later*/
 	public Node ancestorToTree(int[][] ancestor){
 		
 		int size = ancestor[0].length;
@@ -729,7 +733,6 @@ public class Binary_Tree {
 		int depth = 0;
 		HashMap<Integer,ArrayList<Integer>> levelNode = 
 				new HashMap<Integer,ArrayList<Integer>>();
-		
 		
 		Node root = null;
 		
@@ -746,7 +749,6 @@ public class Binary_Tree {
 		}
 		
 		for(int i = 0;i < ancestor.length;i++){
-			//System.out.println(noOfAncestors[i]);
 			ArrayList<Integer> al;
 			
 			if(noOfAncestors[i] > depth)
@@ -785,12 +787,15 @@ public class Binary_Tree {
 						nodeArray[i].left = nodeArray[k];
 				}
 			}
-			upper++;lower++;
+			upper++;
+			lower++;
 		}
 		
 		return root;
 	}
-
+	/*	Special tree is a binary tree where each node has 0 or 2 children	
+	 * 	Inorder traversal data is used toconstruct a special tree. 
+	 * 	The root of the tree is returned	*/
 	public Node inOrderSpecialTree(int[] inOrder,int start,int end){
 		
 		int max = inOrder[start];
@@ -818,7 +823,7 @@ public class Binary_Tree {
 		return node;
 		
 	}
-	
+	/*	Initializes special tree creation from inorder traversal	*/
 	public Node inOrderSpecialInitialize(int[] inOrder){
 		
 		int size = inOrder.length;
@@ -826,7 +831,7 @@ public class Binary_Tree {
 		
 		return root;
 	}
-	
+	/*	Utility method used to create binary tree from parent array	*/
 	public Node parentArrayToTree(int[] parent, Node root){
 		
 		int rootVal = root.data;
@@ -857,11 +862,10 @@ public class Binary_Tree {
 		return root;
 		
 	}
-	
+	/*	Method used to create a binary tree from parent array representation	*/
 	public Node parentArrayToTreeInitialize(int[] parent){
 		
 		int rootVal = 0;
-		
 		
 		for(int i = 0;i < parent.length;i++){
 			if(parent[i] == -1){
@@ -876,7 +880,7 @@ public class Binary_Tree {
 		return root;
 	}
 	
-	public Node toThreaded(Node currNode){	// Review and test later
+	public Node toThreaded(Node currNode){	// TODO :	Review and test later
 		
 		Stack<Node> stack = new Stack<Node>();
 		Queue<Node> q = new LinkedList<Node>();
@@ -922,12 +926,9 @@ public class Binary_Tree {
 			}
 
 		}
-		
-		
-		
 		return currNode;
 	}
-
+	/*	Finds path from the root to the given node	*/
 	public ArrayList<Integer> findPathFromRoot(Node root,int nodeVal){
 		
 		ArrayList<Integer> path = new ArrayList<Integer>();
@@ -935,25 +936,24 @@ public class Binary_Tree {
 		if(nodePresent(root,nodeVal)){
 			path.add(root.data);
 			while(root.data != nodeVal){
-			
-			if(nodePresent(root.left,nodeVal)){
-				path.add(root.left.data);
-				root = root.left;
+				if(nodePresent(root.left,nodeVal)){
+					path.add(root.left.data);
+					root = root.left;
+				}
+				else if(nodePresent(root.right,nodeVal)){
+					path.add(root.right.data);
+					root = root.right;
+				}
 			}
-			else if(nodePresent(root.right,nodeVal)){
-				path.add(root.right.data);
-				root = root.right;
-			}
-		}
-			
 			return path;
 		}
 		else{
-			System.out.println("Node not present");
+			System.out.println("ERROR : Node not present");
 			return path;
 		}
 	}
-	
+	/*	Method is used to check whether the data point(nodeVal) 
+	 * 	is present in the binary tree*/
 	public boolean nodePresent(Node root,int nodeVal){
 		
 		boolean present = false;
@@ -978,9 +978,8 @@ public class Binary_Tree {
 		}
 		
 		return present;
-		
 	}
-
+	/*	Finds Least Common Ancestor(LCA) of two Nodes	*/
 	public int findLCA(Node root,int a,int b){
 		
 		int LCA = root.data;
@@ -996,13 +995,13 @@ public class Binary_Tree {
 			for(Integer i : ala){
 				if(alb.contains(i))
 					LCA = i;
-			}
-		return LCA;	
+				}
+			return LCA;	
 		}
 		else
 			return -1;
 	}
-
+	/*	Finds the minimum distance between two nodes in the tree*/
 	public int distTwoNodes(Node root,int a, int b){
 		
 		int dist = 0;
@@ -1010,30 +1009,28 @@ public class Binary_Tree {
 		
 		if(nodePresent(root, a) && nodePresent(root, b)){
 			
+			ArrayList<Integer> ala = new ArrayList<Integer>();
+			ala = findPathFromRoot(root, a);
+			ArrayList<Integer> alb = new ArrayList<Integer>();
+			alb = findPathFromRoot(root, b);
 		
-		ArrayList<Integer> ala = new ArrayList<Integer>();
-		ala = findPathFromRoot(root, a);
+			LCA = findLCA(root,a,b);
+			dist = ala.size() + alb.size() - 2;
 		
-		ArrayList<Integer> alb = new ArrayList<Integer>();
-		alb = findPathFromRoot(root, b);
+			int count1 = 0;
+			for(Integer i : ala){
+				if(i == LCA)
+					break;
+				count1++;
+			}
+			dist = dist - count1;
 		
-		LCA = findLCA(root,a,b);
-		dist = ala.size() + alb.size() - 2;
-		
-		int count1 = 0;
-		for(Integer i : ala){
-			if(i == LCA)
-				break;
-			count1++;
-		}
-		dist = dist - count1;
-		
-		count1 = 0;
-		for(Integer i : alb){
-			if(i == LCA)
-				break;
-			count1++;
-		}
+			count1 = 0;
+			for(Integer i : alb){
+				if(i == LCA)
+					break;
+				count1++;
+			}
 		
 		}
 		else 
